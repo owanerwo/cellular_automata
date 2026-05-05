@@ -60,7 +60,11 @@ def update_cell(board: list[list[int]], r: int, c: int, neighborhood_type: str, 
     """
     
     neighborhood = neighborhood_to_string(board, r, c, neighborhood_type)
-    return rules[neighborhood]
+
+    try:
+        return rules[neighborhood]
+    except(KeyError):
+        return 0 # Default to 0 (dead cell) if the neighborhood configuration is not found in the rules
 
 
 def neighborhood_to_string(board: list[list[int]], r: int, c: int, neighborhood_type: str = "Moore") -> str:
